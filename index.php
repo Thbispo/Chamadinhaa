@@ -5,39 +5,39 @@
 <?php
 
 
-$dns = 'mysql:dbname=bd_chamadinha;host=localhost';
+$dsn = 'mysql:dbname=bd_chamadinha;host=localhost';
 $user = 'root';
 $password = '';
 
-$banco = new PDO($dns, $user , $password);
+$banco = new PDO($dsn, $user, $password);
 
 $select = 'SELECT * FROM tb_alunos';
 
-$resultado = $banco->query($select)->fetchAll() ;
+$resultado = $banco->query($select)->fetchAll();
 
 //echo '<pre>';
 //var_dump($resultado);
 ?>
+
 <main class="container my-5">
- <table class="table table-striped">
-    <tr>
-        <td>id</td>
-        <td>nome</td>
-        <td class="text-center">Ações</td>
-    </tr>
+    <table class="table table-striped">
+        <tr>
+            <td>id</td>
+            <td>nome</td>
+            <td class="text-center">Ações</td>
+        </tr>
 
 
-    <?php foreach($resultado as $lista ) { ?>
-    <tr>
-        <td> <?php echo $lista ['id'] ?> </td>
-        <td> <?php echo $lista ['alunos'] ?> </td>
-        <td class="text-center">
-            <a href="#" class="btn btn-primary">Abrir</a>
-            <a href="#" class="btn btn-warning">Editar</a>
-            <a href="#" class="btn btn-danger">Excluir</a>
-        </td>
-    </tr>
-    <?php } ?>
- </table>
+        <?php foreach ($resultado as $lista) { ?>
+            <tr>
+                <td> <?php echo $lista['id'] ?> </td>
+                <td> <?php echo $lista['alunos'] ?> </td>
+                <td class="text-center">
+                    <a href="./ficha.php?id_aluno=<?= $lista['id'] ?>" class="btn btn-primary">Abrir</a>
+                    <a href="#" class="btn btn-warning">Editar</a>
+                    <a href="#" class="btn btn-danger">Excluir</a>
+                </td>
+            </tr>
+        <?php } ?>
+    </table>
 </main>
-
